@@ -98,8 +98,8 @@ foreach (keys %ids_append_file) {
 			$_=~s/\@.*//;
 		}
 		$dupids{$dupv}=$_;
-		if(exists($names_master{$_})) { $dupm=$names_master{$_} } else { $dupm="NO NAME SUPPLIED"; }
-		if(exists($names_append{$_})) { $dupa=$names_append{$_} } else { $dupa="NO NAME SUPPLIED"; }
+		if(exists($names_master{$dupv})) { $dupm=$names_master{$dupv} } else { $dupm="NO NAME SUPPLIED"; }
+		if(exists($names_append{$dupv})) { $dupa=$names_append{$dupv} } else { $dupa="NO NAME SUPPLIED"; }
 		print LOGD "Found Duplicate ID $dupv which is renumbered $dupids{$dupv} on records: MASTER $dupm and APPEND $dupa\n";
 	}
 }

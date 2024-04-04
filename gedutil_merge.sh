@@ -51,8 +51,8 @@ grep '^0' $out_dir/${appendfilestem}_append_collapsed.ged | sed "s/¬/\t/g" | cu
 grep '^0' $out_dir/${filestem}_master_collapsed.ged | sed "s/¬/\t/g" | cut -f1 |sed "s/^.* //g " | uniq >$out_dir/${filestem}_ufields.txt
 grep '^0' $out_dir/${appendfilestem}_append_collapsed.ged | sed "s/¬/\t/g" | cut -f1 | sed "s/^.* //g " | uniq  | grep -v '^HEAD' | grep -v '^TRLR' | grep -v '^SUBM' >$out_dir/${appendfilestem}_ufields.txt
 # id name hashes for reporting on duplicates
-grep '^0.*INDI¬' $out_dir/${filestem}_master_collapsed.ged | sed "s/¬/\t/g" | cut -f1,2 | sed "s/^0 \@//g; s/\@.*NAME /\t/g" >$out_dir/${filestem}_names.txt
-grep '^0.*INDI¬' $out_dir/${appendfilestem}_append_collapsed.ged | sed "s/¬/\t/g" | cut -f1,2 | sed "s/^0 \@//g; s/\@.*NAME /\t/g" >$out_dir/${appendfilestem}_names.txt
+grep '^0.*INDI¬' $out_dir/${filestem}_master_collapsed.ged | sed "s/¬/\t/g" | cut -f1,2 | sed "s/^0 \@//g; s/\@.*NAME /\t/g; s/\@.*/\t/" >$out_dir/${filestem}_names.txt
+grep '^0.*INDI¬' $out_dir/${appendfilestem}_append_collapsed.ged | sed "s/¬/\t/g" | cut -f1,2 | sed "s/^0 \@//g; s/\@.*NAME /\t/g; s/\@.*/\t/" >$out_dir/${appendfilestem}_names.txt
 
 perl gedutil_merge.pl $out_dir/${filestem}_master_collapsed.ged $out_dir/${appendfilestem}_append_collapsed.ged >$out_dir/${filestem}_newmerge_collapsed.ged 
 
@@ -60,6 +60,7 @@ perl gedutil_merge.pl $out_dir/${filestem}_master_collapsed.ged $out_dir/${appen
 cat $out_dir/${filestem}_newmerge_collapsed.ged | sed "s/¬/\n/g" | grep -v "^$" > $out_dir/${filestem}_newmerge.ged
 echo "COMPLETE. The new gedcom file can be found at $out_dir/${filestem}_newmerge.ged "
 echo ""
+echo "Note: Check the $out_dir/mergedupslog.txt file to ensure you really wanted to merge any duplicates identified."
 echo ""
 echo "END"
 
