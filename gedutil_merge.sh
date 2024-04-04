@@ -60,8 +60,11 @@ perl gedutil_merge.pl $out_dir/${filestem}_master_collapsed.ged $out_dir/${appen
 cat $out_dir/${filestem}_newmerge_collapsed.ged | sed "s/¬/\n/g" | grep -v "^$" > $out_dir/${filestem}_newmerge.ged
 echo "COMPLETE. The new gedcom file can be found at $out_dir/${filestem}_newmerge.ged "
 echo ""
-echo "Note: Check the $out_dir/mergedupslog.txt file to ensure you really wanted to merge any duplicates identified."
+echo "Note: "
 echo ""
+echo "1. Check the $out_dir/mergedupslog.txt file to ensure you really wanted to merge any duplicates identified."
+echo ""
+echo "2. Manually merge the two branches which were merged (if necessary) in the family tree software,"
 echo "END"
 
 else 
